@@ -1,4 +1,4 @@
-export const categories = [
+export const locations = [
   {
     title: "Bali, Indonesia",
     image: "images/baliIndonesia.jpg",
