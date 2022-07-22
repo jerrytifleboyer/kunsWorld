@@ -11,7 +11,7 @@ export function Dropdown() {
         id="cart-items-list"
         className="h-48 flex flex-col overflow-auto"
       ></div>
-      <Button content="Checkout!" />
+      <Button content="Checkout" />
     </div>
   );
 }

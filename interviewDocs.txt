@@ -1,0 +1,66 @@
+general coding knowledge:
+1. what are statically typed/ dynamically typed languages?:
+    (static = language in which you have to initially declare the primitive of the variables beforehand, faster to run)
+    (dynamic = the compiler guesses what type the primitive will be, slower to run)
+    static = java
+    dynamic = javascript/python
+
+javascript specific knowledge:
+1. difference between functions and ()=>{} 
+    functions: 
+    1.has the constructor function
+    2.has .this value
+    3.are hoisted
+    4.can be anonymous
+
+    ()=>{}:
+    1.easier to write/read
+    2.always anonymous
+    3.does not have what functions have
+
+2. what does hoisted mean?
+    it means all functions, not declarations, are moved to the top of the script at runtime
+    (they get run before anyone else, like having priority)
+    example: function doesSomething(){} <-- gets hoisted
+
+    example: const doSomething = () => {}
+                               ^-- is not hoisted because it is an assignment
+
+3. functions are first class citizens:
+    it means that functions treated like any other variable, and so you can pass functions into functions
+
+4. higher order function:
+    because functions can be called by functions, the caller is called a higher order function:
+    example: data.map((element)=><div>{element}</div>) <-- .map is a function calling an anonymous function
+
+5. callback:
+    the anonymous function being called (above), is called a callback function
+    example: (element)=><div>{element}</div>
+
+4. currying:
+    currying is the process of passing a function into another function, which can use it as part of it's end result
+    example: const sum = (a) => {(b)=>{console.log(a+b)}}
+             sum(3)(4)
+         >>> 7
+
+
+5. scopes (3 types):
+    1.global, can be read from the whole script
+    2.functional, can be read only within the function
+    3.blocked scope, can be read within the brackets
+
+6. closures:
+    the child function has access to the parent function's variables
+    example: 
+    const exclaim = "!"     <-- global
+    function Parent(){
+        const word = "hello" <--functional
+        function Child(){
+            const word2 = "world" <--blocked
+            console.log(word, word2, exclaim)
+        }
+    }
+    Parent()
+    >>> hello world
+
+

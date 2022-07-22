@@ -1,6 +1,10 @@
 import { merch } from "../backend/merch-data";
+import { Button } from "../components/Button";
 
 export function Merch() {
+  const addItemToCart = (item) => {
+    console.log(item.product);
+  };
   return (
     <div className="h-96 flex justify-center items-center space-x-20 mt-20">
       {merch.map((item, index) => (
@@ -20,9 +24,12 @@ export function Merch() {
             id="check-it-out-box"
             className="w-48 h-48 flex justify-center items-center absolute opacity-0 hover:opacity-100"
           >
-            <button className="rounded-xl border-2 bg-indigo-300 text-white hover:bg-indigo-400 px-2 py-1">
-              Add to Cart
-            </button>
+            <Button
+              content="Add to Cart"
+              handleClick={() => {
+                addItemToCart(item);
+              }}
+            />
           </div>
         </div>
       ))}

@@ -1,14 +1,13 @@
-import { useState } from "react";
-import { Outlet, Link } from "react-router-dom";
 import { Fragment } from "react";
+import { Outlet, Link } from "react-router-dom";
 import { Dropdown } from "./Cart/Dropdown";
-
+import { useSelector, useDispatch } from "react-redux";
+import { selectIsCartOpen } from "../store/cart/cartSelector";
+import { setIsCartOpen } from "../store/cart/cartAction";
 export function Navbar() {
-  const [dropdown, setDropdown] = useState(false);
-
-  const handleDropdown = () => {
-    setDropdown(!dropdown);
-  };
+  const dispatch = useDispatch();
+  const isCartOpen = useSelector(selectIsCartOpen);
+  const toggleCartOpen = () => dispatch(setIsCartOpen(!isCartOpen));
 
   return (
     <Fragment>
@@ -20,7 +19,7 @@ export function Navbar() {
             className="w-12 h-12"
           />
         </Link>
-        <div className="w-1/4 flex items-center justify-end">
+        <div className="w-1/2 flex items-center justify-end">
           <Link to="/aboutme" className="font-bold hover:underline">
             About Me
           </Link>
@@ -30,11 +29,11 @@ export function Navbar() {
           <Link to="/suggestions" className="font-bold hover:underline">
             Suggestions
           </Link>
-          <button className="font-bold pl-8" onClick={handleDropdown}>
+          <button className="font-bold pl-8" onClick={toggleCartOpen}>
             Cart
           </button>
         </div>
-        {dropdown && <Dropdown />}
+        {isCartOpen && <Dropdown />}
       </div>
       <Outlet />
     </Fragment>

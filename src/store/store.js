@@ -1,0 +1,17 @@
+import { compose, createStore, applyMiddleware } from "redux";
+import logger from "redux-logger";
+import { rootReducer } from "./root-reducer";
+
+const middleWares = [process.env.NODE_ENV !== "production" && logger].filter(
+  Boolean
+); //passes through this before the store, logging the states
+
+const composeEnhancer =
+  (process.env.NODE_ENV !== "production" &&
+    window &&
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
+  compose;
+
+const composedEnhancers = composeEnhancer(applyMiddleware(...middleWares)); //enhances the store
+
+export const store = createStore(rootReducer, undefined, composedEnhancers); //generates the store
